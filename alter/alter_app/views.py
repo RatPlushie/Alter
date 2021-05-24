@@ -6,3 +6,6 @@ def index(request):
 
 def upload(request):
     return render(request, 'alter_app/upload.html')
+
+def login(request):
+    return render(request, 'alter_app/login.html')

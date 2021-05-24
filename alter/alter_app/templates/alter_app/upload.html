@@ -1,9 +1,30 @@
 {% extends './alter_layout.html' %}
 {% block content %}
 
-<main>
-    <h1>upload page WIP</h1>
+<main class="container py-3">
+    <form class="">
+        <div class="mb-3">
+            <label for="InputTitle" class="form-label">Title</label>
+          
+            <input type="text" class="form-control" id="InputTitle" aria-describedby="titleHelp" placeholder="Fox base">
+        </div>
 
+        <div class="mb-3">
+            <label for="InputDescription" class="form-label">Description</label>
+          
+            <input type="text" class="form-control" id="InputDescription" aria-describedby="titleHelp" placeholder="">
+        </div>
+
+        <div class="mb-3">
+            <label for="InputImage" class="form-label">File</label>
+            
+            <input type="file" class="form-control" id="InputImage" aria-describedby="imageHelp">
+
+            <div id="imageHelp" class="form-text">Currently we only support .PSD file formats</div>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
 </main>
 
 {% endblock %}

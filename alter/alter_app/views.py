@@ -9,3 +9,7 @@ def upload(request):
 
 def login(request):
     return render(request, 'alter_app/login.html')
+
+def gallery(request):
+    return render(request, 'alter_app/gallery.html')
+

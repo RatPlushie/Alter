@@ -1,3 +1,11 @@
 .hover-darken:hover {
     background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
 }
+
+.editor-img {
+    width: 20px;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}

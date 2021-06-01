@@ -13,3 +13,5 @@ def login(request):
 def gallery(request):
     return render(request, 'alter_app/gallery.html')
 
+def editor(request):
+    return render(request, 'alter_app/editor.html')

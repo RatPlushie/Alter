@@ -38,7 +38,13 @@ def editor(request):
     buffer.close()
 
 
+    # Getting ordered list of layers from the PSD
+    psd_structure = reversed(list(psd))
+
     # Context dictionary for passing variable to HTML templates
-    context = {'img_file': img}
+    context = {
+        'img_file': img,
+        'psd': psd_structure,
+    }
 
     return render(request, 'alter_app/editor.html', context)

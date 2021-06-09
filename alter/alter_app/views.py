@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from psd_tools import PSDImage
-
-import base64
 from io import BytesIO
+import base64
+
 
 # Create your views here.
 def index(request):
@@ -26,16 +26,17 @@ def editor(request):
     psd = PSDImage.open('/mnt/Skryre/Users/Aki/Documents/Projects/Programs/Python/Alter/alter/static/psd/Customizable Synx Base.psd')
     PIL_img = psd.composite()
 
-
+    # Saving the PIL.Image as a .png file in a buffer
     buffer = BytesIO()
     PIL_img.save(buffer, format='png')
     buffer.seek(0)
+
+    # Converting the buffer to a usable base64 format for display on the webpage
     image_png = buffer.getvalue()
     img = base64.b64encode(image_png)
     img = img.decode('utf-8')
     buffer.close()
 
-    
 
     # Context dictionary for passing variable to HTML templates
     context = {'img_file': img}

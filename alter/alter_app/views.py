@@ -38,7 +38,7 @@ def editor(request):
     buffer.close()
 
 
-    # Getting ordered list of layers from the PSD
+    # Getting an ordered list of layers from the PSD
     psd_structure = reversed(list(psd))
 
     # Context dictionary for passing variable to HTML templates

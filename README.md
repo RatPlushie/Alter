@@ -28,6 +28,7 @@ It is currently set up to accept MariaDB databases, though this is also configur
 You will also have to import several PIPs
 ```
 Django
+mysqlclient
 Pillow
 psd-tools
 python-decouple

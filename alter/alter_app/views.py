@@ -37,7 +37,7 @@ def editor(request):
     img = img.decode('utf-8')
     buffer.close()
 
-
+    
     # Getting an ordered list of layers from the PSD
     psd_structure = reversed(list(psd))
 

@@ -5,46 +5,68 @@
     <div class="row row-col-3 justify-content-between">
     	<!-- Login form -->
       	<form class="col" id="loginform">
-			<h2>Returning User</h2>
+			<h2 class="fw-bold">Returning User</h2>
 
     		<div class="mb-3 pt-4">
-        		<label for="InputEmail1" class="form-label">Email address</label>
+        		<label for="LoginEmail" class="form-label">Email address</label>
           
-          		<input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+          		<input type="email" class="form-control" id="LoginEmail" aria-describedby="LoginEmailHelp">
           
-          		<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          		<div id="LoginEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
         	</div>
         
         	<div class="mb-3">
-          		<label for="InputPassword1" class="form-label">Password</label>
+          		<label for="LoginPassword" class="form-label">Password</label>
           
-          		<input type="password" class="form-control" id="InputPassword1">
+          		<input type="password" class="form-control" id="LoginPassword">
         	</div>
         
         	<button type="submit" class="btn btn-success">Submit</button>
     	</form>
 
 		<!-- Divider -->
-		<div class="col-1">
-			
-		</div>
+		<div class="col-1"></div>
 
 		<!-- New account form -->
 		<form class="col" id="registrationform">
-			<h2>New User</h2>
+			<h2 class="fw-bold">New User</h2>
 
 			<div class="mb-3 pt-4">
-				<label for="InputEmail1" class="form-label">Email address</label>
+				<label for="RegisterUsername" class="form-label">Username</label>
 				
-				<input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+				<input type="text" class="form-control" id="RegisterUsername" aria-describedby="UsernameHelp">
 				
-				<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+				<div id="UsernameHelp" class="form-text">What others will see you as, and what your art will be linked to.</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="RegisterEmail" class="form-label">Email Address</label>
+				
+				<input type="email" class="form-control" id="RegisterEmail" aria-describedby="RegisterEmailHelp">
+				
+				<div id="RegisterEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="RegisterConfirmEmail" class="form-label">Confirm Email Address</label>
+				
+				<input type="email" class="form-control" id="RegisterConfirmEmail" aria-describedby="ConfirmEmailHelp">
+				
+				<div id="ConfirmEmailHelp" class="form-text">Please enter your email again</div>
 			</div>
 			
 			<div class="mb-3">
-				<label for="InputPassword1" class="form-label">Password</label>
+				<label for="RegisterPassword" class="form-label">Password</label>
 				
-				<input type="password" class="form-control" id="InputPassword1">
+				<input type="password" class="form-control" id="RegisterPassword">
+			</div>
+
+			<div class="mb-3">
+				<label for="RegisterConfirmPassword" class="form-label">Confirm Password</label>
+				
+				<input type="password" class="form-control" id="RegisterConfirmPassword" aria-describedby="ConfirmPasswordHelp">
+
+				<div id="ConfirmPasswordHelp" class="form-text">Please enter your email again</div>
 			</div>
 			
 			<button type="submit" class="btn btn-success">Submit</button>

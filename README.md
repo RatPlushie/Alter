@@ -13,7 +13,7 @@ Artists will be able to upload, store, and manage their creations. By uploading 
 ## Technical
 For security reasons sensitive information has been decoupled from the project. You will have to complete an .env file in the root directory for this to work. I have provided a blank backup of the .env file you can use.
 
-'''
+```
 SECRET_KEY=
 DEBUG=
 DB_NAME=
@@ -21,14 +21,14 @@ DB_USER=
 DB_PASSWORD=
 DB_HOST=
 DB_PORT=
-'''
+```
 
 It is currently set up to accept MariaDB databases, though this is also configurable.
 
 You will also have to import several PIPs
-'''
+```
 Django
 Pillow
 psd-tools
 python-decouple
-'''
+```

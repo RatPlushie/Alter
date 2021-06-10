@@ -75,8 +75,8 @@ WSGI_APPLICATION = 'alter.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
+if DEBUG == True:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': config('DB_NAME'),
@@ -84,8 +84,12 @@ DATABASES = {
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
+        }
     }
-}
+    
+elif DEBUG == False:
+    # TODO use PROD DB server
+    pass
 
 
 # Password validation

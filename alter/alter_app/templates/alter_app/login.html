@@ -2,23 +2,54 @@
 {% block content %}
 
 <main class="container py-3">
-    <form class="">
-        <div class="mb-3">
-          <label for="InputEmail1" class="form-label">Email address</label>
+    <div class="row row-col-3 justify-content-between">
+    	<!-- Login form -->
+      	<form class="col" id="loginform">
+			<h2>Returning User</h2>
+
+    		<div class="mb-3 pt-4">
+        		<label for="InputEmail1" class="form-label">Email address</label>
           
-          <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+          		<input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
           
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
+          		<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        	</div>
         
-        <div class="mb-3">
-          <label for="InputPassword1" class="form-label">Password</label>
+        	<div class="mb-3">
+          		<label for="InputPassword1" class="form-label">Password</label>
           
-          <input type="password" class="form-control" id="InputPassword1">
-        </div>
+          		<input type="password" class="form-control" id="InputPassword1">
+        	</div>
         
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+        	<button type="submit" class="btn btn-success">Submit</button>
+    	</form>
+
+		<!-- Divider -->
+		<div class="col-1">
+			
+		</div>
+
+		<!-- New account form -->
+		<form class="col" id="registrationform">
+			<h2>New User</h2>
+
+			<div class="mb-3 pt-4">
+				<label for="InputEmail1" class="form-label">Email address</label>
+				
+				<input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+				
+				<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="InputPassword1" class="form-label">Password</label>
+				
+				<input type="password" class="form-control" id="InputPassword1">
+			</div>
+			
+			<button type="submit" class="btn btn-success">Submit</button>
+		</form>
+    </div>
 </main>
 
 {% endblock %}

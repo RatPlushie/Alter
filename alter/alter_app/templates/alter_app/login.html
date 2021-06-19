@@ -28,6 +28,14 @@
 		<div class="col-1"></div>
 
 		<!-- New account form -->
+		<form method="POST" action="">
+			{% csrf_token %}
+			{{ user_creation_form }}
+
+			<input type="submit" value="Submit" name="Create User">
+		</form>
+
+
 		<form class="col" id="registrationform">
 			<h2 class="fw-bold">New User</h2>
 

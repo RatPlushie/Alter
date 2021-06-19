@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import RegistrationForm
 from psd_tools import PSDImage
 from io import BytesIO
 import base64
@@ -14,7 +15,16 @@ def upload(request):
 
 
 def login(request):
-    return render(request, 'alter_app/login.html')
+    user_creation_form = RegistrationForm()
+
+    if request.method == 'POST':
+        user_creation_form = RegistrationForm(request.POST)
+
+        if user_creation_form.is_valid():
+            user_creation_form.save()
+
+    context = {'user_creation_form': user_creation_form}
+    return render(request, 'alter_app/login.html', context)
 
 
 def gallery(request):

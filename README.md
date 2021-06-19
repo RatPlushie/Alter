@@ -32,4 +32,5 @@ mysqlclient
 Pillow
 psd-tools
 python-decouple
+pylint-django
 ```

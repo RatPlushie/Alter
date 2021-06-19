@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import RegistrationForm
+from .models import Species
 from psd_tools import PSDImage
 from io import BytesIO
 import base64
@@ -11,7 +12,12 @@ def index(request):
 
 # Upload Page
 def upload(request):
-    return render(request, 'alter_app/upload.html')
+    # Querying DB for existing species
+    species_list = Species.objects.all().order_by('name')
+
+    # Passing context to renderer
+    context = {'species_list': species_list}
+    return render(request, 'alter_app/upload.html', context)
 
 # Login Page
 def login(request):
@@ -27,7 +33,7 @@ def login(request):
 
     # Passing context to renderer
     context = {'user_creation_form': user_creation_form}
-    
+
     return render(request, 'alter_app/login.html', context)
 
 # Gallery Page

@@ -1,0 +1,54 @@
+{% extends './alter_layout.html' %}
+{% block content %}
+
+<main class="container py-3">	
+    <div class="row row-col-3 justify-content-between">
+    	<!-- New account form -->
+		<form class="col" id="registrationform" method="POST" action="">
+			{% csrf_token %}
+			
+			<h2 class="fw-bold">New User</h2>
+
+			
+
+			<div class="mb-3 pt-4">
+				<label for="RegisterUsername" class="form-label">Username</label>
+				
+				{{ user_creation_form.username }}
+				
+				<div id="UsernameHelp" class="form-text">What others will see you as, and what your art will be linked to.</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="RegisterEmail" class="form-label">Email Address</label>
+				
+				{{ user_creation_form.email }}
+				
+				<div id="RegisterEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="RegisterPassword" class="form-label">Password</label>
+				
+				{{ user_creation_form.password1 }}
+			</div>
+
+			<div class="mb-3">
+				<label for="RegisterConfirmPassword" class="form-label">Confirm Password</label>
+				
+				{{ user_creation_form.password2 }}
+			</div>
+			
+			<button name="register_btn" type="submit" class="btn btn-success">Register</button>
+
+			<!-- Pop up messages -->
+			<div class="mb-3">
+				{% for message in messages %}
+				<p>{{ message }}</p>
+				{% endfor %}
+			</div>
+		</form>
+    </div>
+</main>
+
+{% endblock %}

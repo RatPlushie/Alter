@@ -2,6 +2,30 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+class LoginForm():
+    model = User
+
+    fields = [
+        'username',
+        'password'
+    ]
+
+    widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'form-control',
+                'type': 'text',
+                'id': 'RegisterUsername',
+                'aria-describedby': 'UsernameHelp',
+            }),
+
+            'password': forms.PasswordInput(attrs={
+                'class': 'form-control',
+                'type': 'password',
+                'id': 'RegisterPassword',
+            }),
+        }
+
+
 # Create your forms here
 class RegistrationForm(UserCreationForm):
     # Overwriting constructor for password fields to comply with bootstrap (don't ask why, it only works as an overwrite)

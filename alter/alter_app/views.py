@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegistrationForm
+from .forms import RegistrationForm, LoginForm
 from .models import Species
 from psd_tools import PSDImage
 from io import BytesIO
@@ -26,7 +26,18 @@ def upload(request):
 
 # Login Page
 def login(request):
-    # Initialising registration form
+    # Inititialisation of login form
+    user_login_form = LoginForm()
+
+    # Passing context to renderer
+    context = {}
+
+    return render(request, 'alter_app/login.html', context)
+
+
+# Registartion Page
+def registration(request):
+    # Initialisation of registration form
     user_creation_form = RegistrationForm()
 
     # Awaiting request to create a new user
@@ -40,14 +51,15 @@ def login(request):
             user = user_creation_form.cleaned_data.get('username')
             messages.success(request, user + '\'s account successfully created')
 
+            # TODO write redirect to the login page after successful user creation
+
         else:
             # TODO write error messages for invalid registrations
             pass
 
-    # Passing context to renderer
     context = {'user_creation_form': user_creation_form}
 
-    return render(request, 'alter_app/login.html', context)
+    return render(request, 'alter_app/registration.html', context)
 
 
 # Gallery Page

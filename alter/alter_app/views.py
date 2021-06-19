@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegistrationForm, LoginForm
+from django.contrib.auth.decorators import login_required
+from .forms import RegistrationForm
 from .models import Species
 from psd_tools import PSDImage
 from io import BytesIO
@@ -14,6 +15,7 @@ def index(request):
 
 
 # Upload Page
+@login_required(login_url='login')
 def upload(request):
     # Querying DB for existing species
     species_list = Species.objects.all().order_by('name')
@@ -25,9 +27,19 @@ def upload(request):
 
 
 # Login Page
-def login(request):
-    # Inititialisation of login form
-    user_login_form = LoginForm()
+def login_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('LoginUsername')
+        password = request.POST.get('LoginPassword')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+
+            # TODO redirect user to home page after successful login
+        else:
+            messages.info(request, 'Username or password invalid')
 
     # Passing context to renderer
     context = {}
@@ -51,7 +63,8 @@ def registration(request):
             user = user_creation_form.cleaned_data.get('username')
             messages.success(request, user + '\'s account successfully created')
 
-            # TODO write redirect to the login page after successful user creation
+            # redirect to login page on successful account creation
+            return redirect('login_page')
 
         else:
             # TODO write error messages for invalid registrations
@@ -68,6 +81,7 @@ def gallery(request):
 
 
 # PSD Editor Page
+@login_required(login_url='login')
 def editor(request):
     # Extrapolating the PSD to a PIL.Image
     psd = PSDImage.open('/mnt/Skryre/Users/Aki/Documents/Projects/Programs/Python/Alter/alter/static/psd/Customizable Synx Base.psd')

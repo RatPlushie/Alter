@@ -47,6 +47,13 @@ def login_page(request):
     return render(request, 'alter_app/login.html', context)
 
 
+# Logout call
+def logout_user(request):
+    # Calling the auth method for logging out a user
+    logout(request)
+    return redirect('login')
+
+
 # Registartion Page
 def registration(request):
     # Initialisation of registration form

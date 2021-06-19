@@ -4,33 +4,37 @@ from psd_tools import PSDImage
 from io import BytesIO
 import base64
 
-
 # Create your views here.
+# Home Page
 def index(request):
     return render(request, 'alter_app/index.html')
 
-
+# Upload Page
 def upload(request):
     return render(request, 'alter_app/upload.html')
 
-
+# Login Page
 def login(request):
+    # Initialising registration form
     user_creation_form = RegistrationForm()
 
+    # Awaiting request to create a new user
     if request.method == 'POST':
         user_creation_form = RegistrationForm(request.POST)
 
         if user_creation_form.is_valid():
             user_creation_form.save()
 
+    # Passing context to renderer
     context = {'user_creation_form': user_creation_form}
+    
     return render(request, 'alter_app/login.html', context)
 
-
+# Gallery Page
 def gallery(request):
     return render(request, 'alter_app/gallery.html')
 
-
+# PSD Editor Page
 def editor(request):
     # Extrapolating the PSD to a PIL.Image
     psd = PSDImage.open('/mnt/Skryre/Users/Aki/Documents/Projects/Programs/Python/Alter/alter/static/psd/Customizable Synx Base.psd')
@@ -47,7 +51,6 @@ def editor(request):
     img = img.decode('utf-8')
     buffer.close()
 
-    
     # Getting an ordered list of layers from the PSD
     psd_structure = reversed(list(psd))
 

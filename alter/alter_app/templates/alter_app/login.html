@@ -28,25 +28,15 @@
 		<div class="col-1"></div>
 
 		<!-- New account form -->
-		<!--form method="POST" action="">
-			{% csrf_token %}
-			{{ user_creation_form }}
-
-			<input type="submit" value="Submit" name="Create User">
-		</form-->
-
-
 		<form class="col" id="registrationform" method="POST" action="">
-			<h2 class="fw-bold">New User</h2>
-
 			{% csrf_token %}
-			<!--{{ user_creation_form }}-->
+			
+			<h2 class="fw-bold">New User</h2>
 
 			<div class="mb-3 pt-4">
 				<label for="RegisterUsername" class="form-label">Username</label>
 				
 				{{ user_creation_form.username }}
-				<!--input type="text" class="form-control" id="RegisterUsername" aria-describedby="UsernameHelp"-->
 				
 				<div id="UsernameHelp" class="form-text">What others will see you as, and what your art will be linked to.</div>
 			</div>
@@ -55,7 +45,6 @@
 				<label for="RegisterEmail" class="form-label">Email Address</label>
 				
 				{{ user_creation_form.email }}
-				<!--input type="email" class="form-control" id="RegisterEmail" aria-describedby="RegisterEmailHelp"-->
 				
 				<div id="RegisterEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
 			</div>
@@ -64,16 +53,12 @@
 				<label for="RegisterPassword" class="form-label">Password</label>
 				
 				{{ user_creation_form.password1 }}
-				<!--input type="password" class="form-control" id="RegisterPassword"-->
 			</div>
 
 			<div class="mb-3">
 				<label for="RegisterConfirmPassword" class="form-label">Confirm Password</label>
 				
 				{{ user_creation_form.password2 }}
-				<!--input type="password" class="form-control" id="RegisterConfirmPassword" aria-describedby="ConfirmPasswordHelp"-->
-
-				<div id="ConfirmPasswordHelp" class="form-text"></div>
 			</div>
 			
 			<button type="submit" class="btn btn-success">Submit</button>

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your forms here
 class RegistrationForm(UserCreationForm):
-    # Overwriting constructor for password fields to comply with bootstrap
+    # Overwriting constructor for password fields to comply with bootstrap (don't ask why, it only works as an overwrite)
     password1 = forms.CharField(
         label = 'Password',
         widget = forms.PasswordInput(attrs={

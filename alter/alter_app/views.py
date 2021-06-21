@@ -45,7 +45,9 @@ def login_page(request):
             # Django call to login in user
             login(request, user)
 
-            # TODO redirect user to home page after successful login
+            # Returning the user to the home page
+            return redirect('home')
+
         else:
             # When no valid user is found display a message prompt
             messages.info(request, 'Username or password invalid')

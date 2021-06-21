@@ -68,11 +68,21 @@
                                         </a>
 
                                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                            <li><a class="dropdown-item" href="/registration">Register</a></li>
-                                            
-                                            <li><a class="dropdown-item" href="/login">Login</a></li>
-                                            
+                                            {% if request.user.is_authenticated %}
+
+                                            <li><a class="dropdown-item" href="#">Settings</a></li>
+
+                                            <li><hr class="dropdown-divider"></li>
+
                                             <li><a class="dropdown-item" href="/logout">Logout</a></li>
+
+                                            {% else %}
+
+                                            <li><a class="dropdown-item" href="/login">Login</a></li>
+
+                                            <li><a class="dropdown-item" href="/registration">Register</a></li>
+
+                                            {% endif %}
                                         </ul>
                                     </li>
                                 </ul>

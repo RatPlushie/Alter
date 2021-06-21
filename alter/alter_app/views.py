@@ -23,35 +23,45 @@ def upload(request):
     # Passing context to renderer
     context = {'species_list': species_list}
 
+    # Rendering page out
     return render(request, 'alter_app/upload.html', context)
 
 
 # Login Page
 def login_page(request):
+    # Awaiting a post call from the request
     if request.method == 'POST':
+        # Gathering username and password from the form
         username = request.POST.get('LoginUsername')
         password = request.POST.get('LoginPassword')
 
+        # Django user authentication, will return "None" if unsuccessful
         user = authenticate(request, username=username, password=password)
 
+        # Check if valid user
         if user is not None:
+            # Django call to login in user
             login(request, user)
 
             # TODO redirect user to home page after successful login
         else:
+            # When no valid user is found display a message prompt
             messages.info(request, 'Username or password invalid')
 
     # Passing context to renderer
     context = {}
 
+    # Rendering page out
     return render(request, 'alter_app/login.html', context)
 
 
 # Logout call
 def logout_user(request):
-    # Calling the auth method for logging out a user
+    # Calling the django auth method for logging out a user
     logout(request)
-    return redirect('login')
+
+    # Returning the user to the home page
+    return redirect('home')
 
 
 # Registartion Page
@@ -61,9 +71,12 @@ def registration(request):
 
     # Awaiting request to create a new user
     if request.method == 'POST':
+        # Init custom registration form from forms.py
         user_creation_form = RegistrationForm(request.POST)
 
+        # Form validation
         if user_creation_form.is_valid():
+            # If valid then save the user in the DB
             user_creation_form.save()
 
             # Creating a popup message when successful creation occurs
@@ -77,13 +90,16 @@ def registration(request):
             # TODO write error messages for invalid registrations
             pass
 
+    # Passing context to renderer
     context = {'user_creation_form': user_creation_form}
 
+    # Rendering page out
     return render(request, 'alter_app/registration.html', context)
 
 
 # Gallery Page
 def gallery(request):
+    # Rendering page out
     return render(request, 'alter_app/gallery.html')
 
 
@@ -114,4 +130,5 @@ def editor(request):
         'psd': psd_structure,
     }
 
+    # Rendering page out
     return render(request, 'alter_app/editor.html', context)

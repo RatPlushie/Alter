@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm
 from .models import Species
+
+# TODO move these imports and the respective code to its on .py file to clean up the page
 from psd_tools import PSDImage
 from io import BytesIO
 import base64

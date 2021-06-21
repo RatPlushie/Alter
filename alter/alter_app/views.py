@@ -86,7 +86,7 @@ def registration(request):
             messages.success(request, user + '\'s account successfully created')
 
             # redirect to login page on successful account creation
-            return redirect('login_page')
+            return redirect('login')
 
         else:
             # TODO write error messages for invalid registrations
@@ -103,6 +103,12 @@ def registration(request):
 def gallery(request):
     # Rendering page out
     return render(request, 'alter_app/gallery.html')
+
+
+# FAQs Page
+def faqs(request):
+    #Rendering page out
+    return render(request, 'alter_app/faqs.html')
 
 
 # PSD Editor Page

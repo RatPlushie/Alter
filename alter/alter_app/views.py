@@ -13,6 +13,7 @@ import base64
 # Create your views here.
 # Home Page
 def index(request):
+    # Rendering page out
     return render(request, 'alter_app/index.html')
 
 

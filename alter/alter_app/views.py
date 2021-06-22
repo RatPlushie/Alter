@@ -13,6 +13,7 @@ def index(request):
     return render(request, 'alter_app/index.html')
 
 
+
 # Upload Page
 @login_required(login_url='login')
 def upload(request):
@@ -24,6 +25,7 @@ def upload(request):
 
     # Rendering page out
     return render(request, 'alter_app/upload.html', context)
+
 
 
 # Login Page
@@ -56,6 +58,7 @@ def login_page(request):
     return render(request, 'alter_app/login.html', context)
 
 
+
 # Logout call
 def logout_user(request):
     # Calling the django auth method for logging out a user
@@ -63,6 +66,7 @@ def logout_user(request):
 
     # Returning the user to the home page
     return redirect('home')
+
 
 
 # Registartion Page
@@ -98,6 +102,7 @@ def registration(request):
     return render(request, 'alter_app/registration.html', context)
 
 
+
 # Gallery Page
 def gallery(request):
     # TODO Paginate the gallery onto several pages
@@ -118,10 +123,12 @@ def gallery(request):
     return render(request, 'alter_app/gallery.html', context)
 
 
+
 # FAQs Page
 def faqs(request):
     #Rendering page out
     return render(request, 'alter_app/faqs.html')
+
 
 
 # PSD Editor Page

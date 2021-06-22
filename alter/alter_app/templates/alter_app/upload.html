@@ -3,15 +3,16 @@
 
 <main class="container py-3">
     <form class="">
+        {% csrf_token %}
         <div id="title" class="mb-3">
             <label for="InputTitle" class="form-label">Title</label>
           
-            <input type="text" class="form-control" id="InputTitle" aria-describedby="titleHelp" placeholder="Fox base">
+            {{ upload_form.title }}
         </div>
 
         <div id="species" class="mb-3">
             <label for="speciesDataList" class="form-label">Species</label>
-                <input class="form-control" list="datalistOptions" id="speciesDataList" placeholder="Type to search...">
+                {{ upload_form.species }}
                 
                 <datalist id="datalistOptions">
                     {% for species in species_list %}
@@ -23,13 +24,13 @@
         <div id="description" class="mb-3">
             <label for="InputDescription" class="form-label">Description</label>
 
-            <textarea class="form-control" id="InputDescription" rows="4"></textarea>
+            {{ upload_form.description }}
         </div>
 
         <div id="file" class="mb-3">
             <label for="InputImage" class="form-label">File</label>
             
-            <input type="file" class="form-control" id="InputImage" aria-describedby="imageHelp">
+            {{ upload_form.file }}
 
             <div id="imageHelp" class="form-text">Currently we only support .PSD file formats</div>
         </div>
@@ -37,7 +38,7 @@
         <div id="Thumbnail" class="mb-3">
             <label for="InputThumbnail" class="form-label">Thumbnail</label>
             
-            <input type="file" class="form-control" id="InputThumbnail" aria-describedby="thumbnailHelp">
+            {{ upload_form.thumbnail }}
         </div>
         
         <button type="submit" class="btn btn-success">Submit</button>

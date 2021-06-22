@@ -62,38 +62,53 @@ class RegistrationForm(UserCreationForm):
     
 
 # Form used for the uploading of new art
-class uploadform(forms.Form):
+class UploadForm(forms.Form):
     title = forms.CharField(
         label = 'title',
         widget = forms.TextInput(attrs={
-            'class': 'form-control'
+            'class': 'form-control',
+            'type': 'text',
+            'id': 'InputTitle',
+            'aria-describedby': 'titleHelp',
+            'placeholder': 'Fox Base'
         })
     )
 
     species = forms.CharField(
         label = 'Species',
         widget = forms.TextInput(attrs={
-            'class': 'form-control'
+            'class': 'form-control',
+            'list': 'datalistOptions',
+            'id': 'speciesDataList',
+            'placeholder': 'Type to search...'
         })
     )
 
     description = forms.CharField(
         label = 'description',
         widget = forms.Textarea(attrs={
-            'class': 'form-control'
+            'class': 'form-control',
+            'id': 'InputDescription',
+            'rows': '4'
         })
     )
 
     file = forms.FileField(
         label = 'file',
         widget = forms.FileInput(attrs={
-            'class': 'form-control'
+            'class': 'form-control',
+            'type': 'file',
+            'id': 'InputImage',
+            'aria-describedby': 'imageHelp'
         })
     )
 
     thumbnail = forms.FileField(
         label = 'Thumbnail',
         widget = forms.FileInput(attrs={
-            'class': 'form-control'
+            'class': 'form-control',
+            'type': 'file',
+            'id': 'InputThumbnail',
+            'aria-describedby': 'thumbnailHelp'
         })
     )

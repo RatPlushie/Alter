@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UploadForm
 from .models import Species, Art
 from .utilities.image_control import *
 
@@ -17,11 +17,23 @@ def index(request):
 # Upload Page
 @login_required(login_url='login')
 def upload(request):
+    # Init upload form
+    upload_form = UploadForm()
+
+    # TODO write POST call
+
+
+
+
+
     # Querying DB for existing species
     species_list = Species.objects.all().order_by('name')
 
     # Passing context to renderer
-    context = {'species_list': species_list}
+    context = {
+        'species_list': species_list,
+        'upload_form': upload_form    
+    }
 
     # Rendering page out
     return render(request, 'alter_app/upload.html', context)

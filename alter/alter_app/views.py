@@ -126,18 +126,14 @@ def faqs(request):
 
 # PSD Editor Page
 @login_required(login_url='login')
-def editor(request):
-    # Returning a base64 image from a .psd
-    img_location = '/mnt/Skryre/Users/Aki/Documents/Projects/Programs/Python/Alter/alter/static/psd/Customizable Synx Base.psd'
-    base64_img = get_img64(img_location)
-
-    # Storing the list of layers from the .psd file
-    psd_layers = get_psd_layer_list(img_location)
+def editor(request, pk):
+    # Creating the Artbase Object
+    art_template = ArtBase(pk)
 
     # Context dictionary for passing variable to HTML templates
     context = {
-        'img_file': base64_img,
-        'psd_layers': psd_layers,
+        'img_file': art_template.base64_img,
+        'psd_layers': art_template.psd_layers,
     }
 
     # Rendering page out

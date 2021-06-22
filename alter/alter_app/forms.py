@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 # Create your forms here
+# Form used for the creation of new users
 class RegistrationForm(UserCreationForm):
     # Overwriting constructor for password fields to comply with bootstrap (don't ask why, it only works as an overwrite)
     password1 = forms.CharField(
@@ -59,3 +60,40 @@ class RegistrationForm(UserCreationForm):
             }),
         }
     
+
+# Form used for the uploading of new art
+class uploadform(forms.Form):
+    title = forms.CharField(
+        label = 'title',
+        widget = forms.TextInput(attrs={
+            'class': 'form-control'
+        })
+    )
+
+    species = forms.CharField(
+        label = 'Species',
+        widget = forms.TextInput(attrs={
+            'class': 'form-control'
+        })
+    )
+
+    description = forms.CharField(
+        label = 'description',
+        widget = forms.Textarea(attrs={
+            'class': 'form-control'
+        })
+    )
+
+    file = forms.FileField(
+        label = 'file',
+        widget = forms.FileInput(attrs={
+            'class': 'form-control'
+        })
+    )
+
+    thumbnail = forms.FileField(
+        label = 'Thumbnail',
+        widget = forms.FileInput(attrs={
+            'class': 'form-control'
+        })
+    )

@@ -25,10 +25,6 @@ class ArtBase:
         # TODO build thumbnail version of image // retreive the thumbnail from storage
 
     
-
-
-
-
 # Function to return a .png from a .psd file
 def get_img64(img_location):
     # Opening the .psd file

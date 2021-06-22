@@ -4,11 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm
 from .models import Species
-
-# TODO move these imports and the respective code to its on .py file to clean up the page
-from psd_tools import PSDImage
-from io import BytesIO
-import base64
+from .utilities.image_control import *
 
 # Create your views here.
 # Home Page
@@ -117,28 +113,17 @@ def faqs(request):
 # PSD Editor Page
 @login_required(login_url='login')
 def editor(request):
-    # Extrapolating the PSD to a PIL.Image
-    psd = PSDImage.open('/mnt/Skryre/Users/Aki/Documents/Projects/Programs/Python/Alter/alter/static/psd/Customizable Synx Base.psd')
-    PIL_img = psd.composite()
+    # Returning a base64 image from a .psd
+    img_location = '/mnt/Skryre/Users/Aki/Documents/Projects/Programs/Python/Alter/alter/static/psd/Customizable Synx Base.psd'
+    png_img = get_img64(img_location)
 
-    # Saving the PIL.Image as a .png file in a buffer
-    buffer = BytesIO()
-    PIL_img.save(buffer, format='png')
-    buffer.seek(0)
-
-    # Converting the buffer to a usable base64 format for display on the webpage
-    image_png = buffer.getvalue()
-    img = base64.b64encode(image_png)
-    img = img.decode('utf-8')
-    buffer.close()
-
-    # Getting an ordered list of layers from the PSD
-    psd_structure = reversed(list(psd))
+    # Storing the list of layers from the .psd file
+    psd_layers = get_psd_layer_list(img_location)
 
     # Context dictionary for passing variable to HTML templates
     context = {
-        'img_file': img,
-        'psd': psd_structure,
+        'img_file': png_img,
+        'psd_layers': psd_layers,
     }
 
     # Rendering page out

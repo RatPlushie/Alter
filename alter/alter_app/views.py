@@ -100,21 +100,19 @@ def registration(request):
 
 # Gallery Page
 def gallery(request):
-    # Getting all Art objects from DB
+    # TODO Paginate the gallery onto several pages
+    # TODO display thumbnails in production, not full sized images
+
+    # Getting all Art objects from DB 
     art_list = Art.objects.all().order_by('species')
 
-    # Getting a list of all art's storage locations
-    location_list = list()
-    for art in art_list:
-        location_list.append(art.aws_location)
-    
-    # Converting each .psd file into base64 to be displayed in the gallery
-    base64_img_list = list()
-    for img in location_list:
-        base64_img_list.append(get_img64(img))
+    # Creating a list of art objects to send to the template
+    bases_list = list()
+    for art_template in art_list:
+        bases_list.append(ArtBase(art_template.pk))
 
     # Passing context to renderer
-    context = {'img_list': base64_img_list}
+    context = {'bases_list': bases_list}
 
     # Rendering page out
     return render(request, 'alter_app/gallery.html', context)

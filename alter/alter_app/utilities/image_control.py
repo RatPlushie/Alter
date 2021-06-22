@@ -24,11 +24,12 @@ def get_img64(img_location):
     # Returning the .png image to the function call
     return img
 
+
 def get_psd_layer_list(img_location):
     # Opening the .psd file
     psd = PSDImage.open(img_location)
 
     # Extracting a list of layers from the .psd file
-    layer_list = reversed(list(img_location))
+    layer_list = reversed(list(psd))
 
     return layer_list

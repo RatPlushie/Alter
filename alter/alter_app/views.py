@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm
-from .models import Species
+from .models import Species, Art
 from .utilities.image_control import *
 
 # Create your views here.
@@ -100,8 +100,24 @@ def registration(request):
 
 # Gallery Page
 def gallery(request):
+    # Getting all Art objects from DB
+    art_list = Art.objects.all().order_by('species')
+
+    # Getting a list of all art's storage locations
+    location_list = list()
+    for art in art_list:
+        location_list.append(art.aws_location)
+    
+    # Converting each .psd file into base64 to be displayed in the gallery
+    base64_img_list = list()
+    for img in location_list:
+        base64_img_list.append(get_img64(img))
+
+    # Passing context to renderer
+    context = {'img_list': base64_img_list}
+
     # Rendering page out
-    return render(request, 'alter_app/gallery.html')
+    return render(request, 'alter_app/gallery.html', context)
 
 
 # FAQs Page
@@ -115,14 +131,14 @@ def faqs(request):
 def editor(request):
     # Returning a base64 image from a .psd
     img_location = '/mnt/Skryre/Users/Aki/Documents/Projects/Programs/Python/Alter/alter/static/psd/Customizable Synx Base.psd'
-    png_img = get_img64(img_location)
+    base64_img = get_img64(img_location)
 
     # Storing the list of layers from the .psd file
     psd_layers = get_psd_layer_list(img_location)
 
     # Context dictionary for passing variable to HTML templates
     context = {
-        'img_file': png_img,
+        'img_file': base64_img,
         'psd_layers': psd_layers,
     }
 

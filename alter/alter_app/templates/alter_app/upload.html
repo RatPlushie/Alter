@@ -16,7 +16,9 @@
                 
                 <datalist id="datalistOptions">
                     {% for species in species_list %}
+
                     <option value="{{ species.name }}">
+                    
                     {% endfor %}
                 </datalist>
         </div>
@@ -37,8 +39,12 @@
 
         <div id="Thumbnail" class="mb-3">
             <label for="InputThumbnail" class="form-label">Thumbnail</label>
-            
+
             {{ upload_form.thumbnail }}
+
+            <div id="thumbnailHelp" class="form-text">Thumbnail must be 400x400px</div>
+
+            <div id="thumbnailHelp" class="form-text">If no thumbnail is provided, one will be generated on submission</div>
         </div>
         
         <button type="submit" class="btn btn-success">Submit</button>

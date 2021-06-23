@@ -21,10 +21,8 @@ def upload(request):
     upload_form = UploadForm()
 
     # TODO write POST call
-
-
-
-
+    if request.method == 'POST':
+        pass
 
     # Querying DB for existing species
     species_list = Species.objects.all().order_by('name')
@@ -63,11 +61,8 @@ def login_page(request):
             # When no valid user is found display a message prompt
             messages.info(request, 'Username or password invalid')
 
-    # Passing context to renderer
-    context = {}
-
     # Rendering page out
-    return render(request, 'alter_app/login.html', context)
+    return render(request, 'alter_app/login.html')
 
 
 

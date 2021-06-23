@@ -104,7 +104,7 @@ class UploadForm(forms.Form):
     )
 
     thumbnail = forms.FileField(
-        label = 'Thumbnail',
+        label = 'thumbnail',
         widget = forms.FileInput(attrs={
             'class': 'form-control',
             'type': 'file',

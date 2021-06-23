@@ -26,9 +26,9 @@ class ArtBase:
 
     
 # Function to return a .png from a .psd file
-def get_img64(img_location):
+def get_img64(psd_location):
     # Opening the .psd file
-    psd = PSDImage.open(img_location)
+    psd = PSDImage.open(psd_location)
 
     # Extrapolating the PSD to a PIL.Image
     PIL_img = psd.composite()
@@ -48,9 +48,9 @@ def get_img64(img_location):
     return img
 
 
-def get_psd_layer_list(img_location):
+def get_psd_layer_list(psd_location):
     # Opening the .psd file
-    psd = PSDImage.open(img_location)
+    psd = PSDImage.open(psd_location)
 
     # Extracting a list of layers from the .psd file
     layer_list = reversed(list(psd))

@@ -132,10 +132,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    #os.path.join(BASE_DIR, 'static')
+    BASE_DIR / 'static'
 ]
+
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# S3 bucket config
+# TODO add an if statement switch for DEBUG / PROD
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storages'
+AWS_CUSTOM_DOMAIN = config('AWS_CUSTOM_DOMAIN')
+#AWS_S3_ENDPOINT_URL = config('AWS_S3_ENDPOINT_URL')
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_QUERYSTRING_AUTH = config('AWS_QUERYSTRING_AUTH')
+AWS_S3_FILE_OVERWRITE= config('AWS_S3_FILE_OVERWRITE')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

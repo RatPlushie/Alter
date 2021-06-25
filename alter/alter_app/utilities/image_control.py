@@ -13,12 +13,12 @@ class ArtBase:
         self.description = query.description
         self.author = query.author
         self.date = query.date
-        self.aws_location = query.aws_location
+        self.psd_filename = query.psd_filename
         self.species = query.species.name
         
         # Building the other object elements
-        self.base64_img = get_img64(self.aws_location)
-        self.psd_layers = get_psd_layer_list(self.aws_location)
+        self.base64_img = get_img64(self.psd_filename)
+        self.psd_layers = get_psd_layer_list(self.psd_filename)
 
         # TODO retrieve or build the object's META file for the display of the .psd layers
         # TODO build thumbnail version of image // retreive the thumbnail from storage

@@ -27,6 +27,7 @@ It is currently set up to accept MariaDB databases, though this is also configur
 
 You will also have to import several PIPs
 ```
+boto3
 Django
 django-storages
 mysqlclient

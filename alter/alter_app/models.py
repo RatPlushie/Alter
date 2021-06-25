@@ -10,5 +10,5 @@ class Art(models.Model):
     description = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
-    aws_location = models.TextField()
+    psd_filename = models.TextField()
     species = models.ForeignKey(Species, on_delete=models.DO_NOTHING)

@@ -2,7 +2,6 @@ from ..models import Art
 from psd_tools import PSDImage
 from io import BytesIO
 import base64
-
 class ArtBase:
     def __init__(self, art_ID):
         # Finding the art in the DB
@@ -24,7 +23,15 @@ class ArtBase:
         # TODO retrieve or build the object's META file for the display of the .psd layers
         # TODO build thumbnail version of image // retreive the thumbnail from storage
 
+
+
+class ArtLayer:
+    def __init__(self, psd):
+        # TODO write constructor for the creation of the list
+        pass
+
     
+
 # Function to return a .png from a .psd file
 def get_img64(psd_location):
     # Opening the .psd file

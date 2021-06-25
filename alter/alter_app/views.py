@@ -120,8 +120,8 @@ def gallery(request):
 
     # Creating a list of art objects to send to the template
     bases_list = list()
-    for art_template in art_list:
-        bases_list.append(ArtBase(art_template.pk))
+    for art in art_list:
+        bases_list.append(ArtBase(art.pk))
 
     # Passing context to renderer
     context = {'bases_list': bases_list}

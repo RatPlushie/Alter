@@ -17,7 +17,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -26,6 +25,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG")
+
 
 ALLOWED_HOSTS = []
 
@@ -91,7 +91,7 @@ if DEBUG:
     }
     
 else:
-    # TODO use PROD DB server
+    # TODO write connection for PROD DB server
     pass
 
 
@@ -135,7 +135,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
-    #os.path.join(BASE_DIR, 'static')
     BASE_DIR / 'static'
 ]
 
@@ -143,17 +142,24 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # S3 bucket config
-# TODO add an if statement switch for DEBUG / PROD
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+if DEBUG:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storages'
-AWS_CUSTOM_DOMAIN = config('AWS_CUSTOM_DOMAIN')
-#AWS_S3_ENDPOINT_URL = config('AWS_S3_ENDPOINT_URL')
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
-AWS_QUERYSTRING_AUTH = config('AWS_QUERYSTRING_AUTH')
-AWS_S3_FILE_OVERWRITE= config('AWS_S3_FILE_OVERWRITE')
+    AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+
+    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+
+    AWS_QUERYSTRING_AUTH = config('AWS_QUERYSTRING_AUTH')
+    AWS_S3_FILE_OVERWRITE = config('AWS_S3_FILE_OVERWRITE')
+
+    AWS_S3_ENDPOINT_URL = config('AWS_S3_ENDPOINT_URL')
+
+else:
+    # TODO write connection for PROD S3 service
+    pass
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

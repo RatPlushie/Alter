@@ -35,8 +35,6 @@ def upload(request):
         # Getting the form with the POST values
         upload_form = UploadForm(request.POST, request.FILES)
 
-        print(upload_form.errors)
-
         # Checking if it meets the form's validity
         if upload_form.is_valid():
             # Parsing the form into variables
@@ -45,8 +43,6 @@ def upload(request):
             upload_description = upload_form.cleaned_data.get('description')
             upload_file = upload_form.cleaned_data.get('file')
             upload_thumbnail = upload_form.cleaned_data.get('thumbnail')
-
-            #print(upload_thumbnail, upload_species, upload_description)
 
             # Checking if the species is currently in the database, if not adding it
             upload_species = str(upload_species).capitalize()
@@ -59,10 +55,11 @@ def upload(request):
                 pass
 
             # TODO Checking if the file submitted is a PSD
-            
+
 
         else:
-            print(upload_form.is_valid())
+            # TODO write invalid form message toast
+            pass
 
     # Passing context to renderer
     context = {

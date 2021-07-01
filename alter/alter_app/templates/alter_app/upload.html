@@ -2,7 +2,7 @@
 {% block content %}
 
 <main class="container py-3">
-    <form class="">
+    <form class="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div id="title" class="mb-3">
             <label for="InputTitle" class="form-label">Title</label>
@@ -49,6 +49,8 @@
         
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
+
+    
 </main>
 
 {% endblock %}

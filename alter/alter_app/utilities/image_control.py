@@ -17,12 +17,17 @@ class ArtBase:
         self.species = query.species.name
         
         # Building the other object elements
-        self.base64_img = get_img64(self.psd_filename)
-        self.psd_layers = get_psd_layer_list(self.psd_filename)
+        #self.base64_img = get_img64(self.psd_filename)
+        #self.psd_layers = get_psd_layer_list(self.psd_filename)
 
         # TODO retrieve or build the object's META file for the display of the .psd layers
         # TODO build thumbnail version of image // retreive the thumbnail from storage
 
+
+
+class CreateThumb:
+    # TODO write function to create a low resolution thumbnail from the .psd file
+    pass
 
 
 class ArtLayer:
@@ -31,7 +36,6 @@ class ArtLayer:
         pass
 
     
-
 # Function to return a .png from a .psd file
 def get_img64(psd_location):
     # Opening the .psd file

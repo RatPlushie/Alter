@@ -2,9 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
+from django.contrib.staticfiles.storage import staticfiles_storage
+
+
 from .forms import RegistrationForm, UploadForm
 from .models import Species, Art
 from .utilities.image_control import *
+
+import logging
 
 # Create your views here.
 # Home Page
@@ -17,15 +23,46 @@ def index(request):
 # Upload Page
 @login_required(login_url='login')
 def upload(request):
+    # Querying DB for existing species
+    species_list = Species.objects.all().order_by('name')
+
     # Init upload form
     upload_form = UploadForm()
 
-    # TODO write POST call
+    # TODO write POST call collection
+    # Awaiting request to upload the data
     if request.method == 'POST':
-        pass
+        # Getting the form with the POST values
+        upload_form = UploadForm(request.POST, request.FILES)
 
-    # Querying DB for existing species
-    species_list = Species.objects.all().order_by('name')
+        print(upload_form.errors)
+
+        # Checking if it meets the form's validity
+        if upload_form.is_valid():
+            # Parsing the form into variables
+            upload_title = upload_form.cleaned_data.get('title')
+            upload_species = upload_form.cleaned_data.get('species')
+            upload_description = upload_form.cleaned_data.get('description')
+            upload_file = upload_form.cleaned_data.get('file')
+            upload_thumbnail = upload_form.cleaned_data.get('thumbnail')
+
+            #print(upload_thumbnail, upload_species, upload_description)
+
+            # Checking if the species is currently in the database, if not adding it
+            upload_species = str(upload_species).capitalize()
+            if upload_species not in species_list:
+                species_query = Species(name = upload_species)
+                species_query.save()
+
+            # TODO Checking if a thumbnail has been provided. If not, creating a thumbnail to use
+            if upload_thumbnail is None:
+                pass
+
+            # TODO Checking if the file submitted is a PSD
+            
+
+        else:
+            print(upload_form.is_valid())
 
     # Passing context to renderer
     context = {
@@ -114,10 +151,10 @@ def registration(request):
 def gallery(request):
     # TODO Paginate the gallery onto several pages
     # TODO display thumbnails in production, not full sized images
-
+    '''
     # Getting all Art objects from DB 
     art_list = Art.objects.all().order_by('species')
-
+    
     # Creating a list of art objects to send to the template
     bases_list = list()
     for art in art_list:
@@ -125,6 +162,29 @@ def gallery(request):
 
     # Passing context to renderer
     context = {'bases_list': bases_list}
+    
+
+    art_list = Art.objects.all().order_by('species')
+
+    gallery_list = None
+    for i in art_list:
+        psd_name = i.psd_filename
+        file_location = '/static/psd/' + psd_name
+
+        
+
+        
+
+        #print(url)
+        
+
+        #img = get_img64(file_location)
+        #gallery_list.append(img)
+    '''
+
+
+    context = {'gallery_list': gallery_list}
+
 
     # Rendering page out
     return render(request, 'alter_app/gallery.html', context)

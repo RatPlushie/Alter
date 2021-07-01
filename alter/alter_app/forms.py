@@ -65,6 +65,7 @@ class RegistrationForm(UserCreationForm):
 class UploadForm(forms.Form):
     title = forms.CharField(
         label = 'title',
+        required = True,
         widget = forms.TextInput(attrs={
             'class': 'form-control',
             'type': 'text',
@@ -86,6 +87,7 @@ class UploadForm(forms.Form):
 
     description = forms.CharField(
         label = 'description',
+        required = True,
         widget = forms.Textarea(attrs={
             'class': 'form-control',
             'id': 'InputDescription',
@@ -95,6 +97,7 @@ class UploadForm(forms.Form):
 
     file = forms.FileField(
         label = 'file',
+        required = True,
         widget = forms.FileInput(attrs={
             'class': 'form-control',
             'type': 'file',
@@ -105,6 +108,7 @@ class UploadForm(forms.Form):
 
     thumbnail = forms.FileField(
         label = 'thumbnail',
+        required = False,
         widget = forms.FileInput(attrs={
             'class': 'form-control',
             'type': 'file',

@@ -22,19 +22,16 @@ def upload(request):
     # Querying DB for existing species
     species_list = Species.objects.all().order_by('name')
 
-    for i in species_list:
-        print(i.pk, i.name)
-
     # Init upload form
     upload_form = UploadForm()
 
-    # TODO Awaiting request to upload the data
     if request.method == 'POST':
         # Getting the form with the POST values
         upload_form = UploadForm(request.POST, request.FILES)
 
         # Checking if it meets the form's validity
         if upload_form.is_valid():
+            # Holding the form save to manipulate
             instance = upload_form.save(commit=False)
             instance.author = request.user
             instance.save()

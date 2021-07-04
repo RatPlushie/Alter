@@ -2,10 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
-from django.contrib.staticfiles.storage import staticfiles_storage
-
-
 from .forms import RegistrationForm, UploadForm
 from .models import Species, Art
 from .utilities.image_control import *
@@ -26,40 +22,33 @@ def upload(request):
     # Querying DB for existing species
     species_list = Species.objects.all().order_by('name')
 
+    for i in species_list:
+        print(i.pk, i.name)
+
     # Init upload form
     upload_form = UploadForm()
 
-    # TODO write POST call collection
-    # Awaiting request to upload the data
+    # TODO Awaiting request to upload the data
     if request.method == 'POST':
         # Getting the form with the POST values
         upload_form = UploadForm(request.POST, request.FILES)
 
         # Checking if it meets the form's validity
         if upload_form.is_valid():
-            # Parsing the form into variables
-            upload_title = upload_form.cleaned_data.get('title')
-            upload_species = upload_form.cleaned_data.get('species')
-            upload_description = upload_form.cleaned_data.get('description')
-            upload_file = upload_form.cleaned_data.get('file')
-            upload_thumbnail = upload_form.cleaned_data.get('thumbnail')
+            instance = upload_form.save(commit=False)
+            instance.author = request.user
+            instance.save()
 
-            # Checking if the species is currently in the database, if not adding it
-            upload_species = str(upload_species).capitalize()
-            if upload_species not in species_list:
-                species_query = Species(name = upload_species)
-                species_query.save()
-
-            # TODO Checking if a thumbnail has been provided. If not, creating a thumbnail to use
-            if upload_thumbnail is None:
-                pass
-
-            # TODO Checking if the file submitted is a PSD
-
+            '''
+            TODO 
+            1) Thumnails currently not able to be submitted
+            2) Species needs to be linked to the foreignkey db table
+            3) Check if file is in PSD format
+            '''
 
         else:
             # TODO write invalid form message toast
-            pass
+            print(upload_form.errors)
 
     # Passing context to renderer
     context = {

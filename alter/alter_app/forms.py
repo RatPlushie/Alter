@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Art
 
 
 # Create your forms here
@@ -62,57 +63,52 @@ class RegistrationForm(UserCreationForm):
     
 
 # Form used for the uploading of new art
-class UploadForm(forms.Form):
-    title = forms.CharField(
-        label = 'title',
-        required = True,
-        widget = forms.TextInput(attrs={
-            'class': 'form-control',
-            'type': 'text',
-            'id': 'InputTitle',
-            'aria-describedby': 'titleHelp',
-            'placeholder': 'Fox Base'
-        })
-    )
+class UploadForm(forms.ModelForm):
+    class Meta:
+        model = Art
 
-    species = forms.CharField(
-        label = 'Species',
-        widget = forms.TextInput(attrs={
-            'class': 'form-control',
-            'list': 'datalistOptions',
-            'id': 'speciesDataList',
-            'placeholder': 'Type to search...'
-        })
-    )
+        fields = [
+            'title',
+            'species',
+            'description',
+            'file',
+            'thumbnail',
+        ]
 
-    description = forms.CharField(
-        label = 'description',
-        required = True,
-        widget = forms.Textarea(attrs={
-            'class': 'form-control',
-            'id': 'InputDescription',
-            'rows': '4'
-        })
-    )
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'type': 'text',
+                'id': 'InputTitle',
+                'aria-describedby': 'titleHelp',
+                'placeholder': 'Fox Base'
+            }),
 
-    file = forms.FileField(
-        label = 'file',
-        required = True,
-        widget = forms.FileInput(attrs={
-            'class': 'form-control',
-            'type': 'file',
-            'id': 'InputImage',
-            'aria-describedby': 'imageHelp'
-        })
-    )
+            'species': forms.TextInput(attrs={
+                'class': 'form-control',
+                'type': 'text',
+                'id': 'InputSpecies',
+                'aria-describedby': 'SpeciesHelp',
+                'placeholder': 'Fox'
+            }),
 
-    thumbnail = forms.FileField(
-        label = 'thumbnail',
-        required = False,
-        widget = forms.FileInput(attrs={
-            'class': 'form-control',
-            'type': 'file',
-            'id': 'InputThumbnail',
-            'aria-describedby': 'thumbnailHelp'
-        })
-    )
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'id': 'InputDescription',
+                'rows': '4'
+            }),
+
+            'file': forms.FileInput(attrs={
+                'class': 'form-control',
+                'type': 'file',
+                'id': 'InputImage',
+                'aria-describedby': 'imageHelp'
+            }),
+
+            'thumbnail': forms.FileInput(attrs={
+                'class': 'form-control',
+                'type': 'file',
+                'id': 'InputThumbnail',
+                'aria-describedby': 'thumbnailHelp'
+            }),
+        }

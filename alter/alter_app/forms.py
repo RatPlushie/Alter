@@ -7,108 +7,108 @@ from .models import Art
 # Create your forms here
 # Form used for the creation of new users
 class RegistrationForm(UserCreationForm):
-    # Overwriting constructor for password fields to comply with bootstrap (don't ask why, it only works as an overwrite)
-    password1 = forms.CharField(
-        label = 'Password',
-        widget = forms.PasswordInput(attrs={
-            'class': 'form-control'
-        })
-    )
+	# Overwriting constructor for password fields to comply with bootstrap (don't ask why, it only works as an overwrite)
+	password1 = forms.CharField(
+		label='Password',
+		widget=forms.PasswordInput(attrs={
+			'class': 'form-control'
+		})
+	)
 
-    password2 = forms.CharField(
-        label = 'Password',
-        widget = forms.PasswordInput(attrs={
-            'class': 'form-control'
-        })
-    )
+	password2 = forms.CharField(
+		label='Password',
+		widget=forms.PasswordInput(attrs={
+			'class': 'form-control'
+		})
+	)
 
-    # Custom User registration form 
-    class Meta:
-        model = User
+	# Custom User registration form
+	class Meta:
+		model = User
 
-        fields = [
-            'username',
-            'email',
-            'password1',
-            'password2'
-        ]
+		fields = [
+			'username',
+			'email',
+			'password1',
+			'password2'
+		]
 
-        widgets = {
-            'username': forms.TextInput(attrs={
-                'class': 'form-control',
-                'type': 'text',
-                'id': 'RegisterUsername',
-                'aria-describedby': 'UsernameHelp',
-            }),
+		widgets = {
+			'username': forms.TextInput(attrs={
+				'class': 'form-control',
+				'type': 'text',
+				'id': 'RegisterUsername',
+				'aria-describedby': 'UsernameHelp',
+			}),
 
-            'email': forms.EmailInput(attrs={
-                'class': 'form-control',
-                'type': 'email',
-                'id': 'RegisterEmail',
-                'aria-describedby': 'RegisterEmailHelp'
-            }),
+			'email': forms.EmailInput(attrs={
+				'class': 'form-control',
+				'type': 'email',
+				'id': 'RegisterEmail',
+				'aria-describedby': 'RegisterEmailHelp'
+			}),
 
-            'password1': forms.PasswordInput(attrs={
-                'class': 'form-control',
-                'type': 'password',
-                'id': 'RegisterPassword',
-            }),
+			'password1': forms.PasswordInput(attrs={
+				'class': 'form-control',
+				'type': 'password',
+				'id': 'RegisterPassword',
+			}),
 
-            'password2': forms.PasswordInput(attrs={
-                'class': 'form-control',
-                'type': 'password',
-                'id': 'RegisterConfirmPassword'
-            }),
-        }
-    
+			'password2': forms.PasswordInput(attrs={
+				'class': 'form-control',
+				'type': 'password',
+				'id': 'RegisterConfirmPassword'
+			}),
+		}
+
 
 # Form used for the uploading of new art
 class UploadForm(forms.ModelForm):
-    class Meta:
-        model = Art
+	class Meta:
+		model = Art
 
-        fields = [
-            'title',
-            'species',
-            'description',
-            'file',
-            'thumbnail',
-        ]
+		fields = [
+			'title',
+			'species',
+			'description',
+			'file',
+			'thumbnail',
+		]
 
-        widgets = {
-            'title': forms.TextInput(attrs={
-                'class': 'form-control',
-                'type': 'text',
-                'id': 'InputTitle',
-                'aria-describedby': 'titleHelp',
-                'placeholder': 'Fox Base'
-            }),
+		widgets = {
+			'title': forms.TextInput(attrs={
+				'class': 'form-control',
+				'type': 'text',
+				'id': 'InputTitle',
+				'aria-describedby': 'titleHelp',
+				'placeholder': 'Fox Base'
+			}),
 
-            'species': forms.TextInput(attrs={
-                'class': 'form-control',
-                'type': 'text',
-                'id': 'InputSpecies',
-                'aria-describedby': 'SpeciesHelp',
-                'placeholder': 'Fox'
-            }),
+			'species': forms.TextInput(attrs={
+				'class': 'form-control',
+				'type': 'text',
+				'id': 'InputSpecies',
+				'aria-describedby': 'SpeciesHelp',
+				'placeholder': 'Fox'
+			}),
 
-            'description': forms.Textarea(attrs={
-                'class': 'form-control',
-                'id': 'InputDescription',
-                'rows': '4'
-            }),
+			'description': forms.Textarea(attrs={
+				'class': 'form-control',
+				'id': 'InputDescription',
+				'rows': '4'
+			}),
 
-            'file': forms.FileInput(attrs={
-                'class': 'form-control',
-                'type': 'file',
-                'id': 'InputImage',
-                'aria-describedby': 'imageHelp'
-            }),
+			'file': forms.FileInput(attrs={
+				'class': 'form-control',
+				'type': 'file',
+				'id': 'InputImage',
+				'aria-describedby': 'imageHelp'
+			}),
 
-            'thumbnail': forms.FileInput(attrs={
-                'class': 'form-control',
-                'type': 'file',
-                'id': 'InputThumbnail',
-                'aria-describedby': 'thumbnailHelp'
-            }),
-        }
+			'thumbnail': forms.FileInput(attrs={
+				'class': 'form-control',
+				'type': 'file',
+				'id': 'InputThumbnail',
+				'aria-describedby': 'thumbnailHelp'
+			}),
+		}
